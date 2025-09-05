@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <div style="padding-top: 60px;">
+      <input type="text" id="todo-input" />
+      <button onclick="addTodo()">Add Todo!</button>
+    </div>
+
+    <div id="todo-list"></div>
+  </body>
+
+  <script>
+    let todos = [];
+
+    function addTodo() {
+      const value = document.getElementById("todo-input").value;
+      if (value.trim() === "") return;
+
+      todos.push(value); // just store the text
+      document.getElementById("todo-input").value = ""; // clear input
+      render(); // re-render
+    }
+
+    function render() {
+      const todoList = document.getElementById("todo-list");
+      todoList.innerHTML = ""; // clear old list
+
+      for (let i = 0; i < todos.length; i++) {
+        const divEl = document.createElement("div");
+        divEl.innerHTML = todos[i];
+        todoList.appendChild(divEl);
+      }
+    }
+  </script>
+</html>
